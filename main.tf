@@ -62,6 +62,11 @@ resource "aws_docdb_cluster" "this" {
   skip_final_snapshot             = var.skip_final_snapshot
   deletion_protection             = var.deletion_protection
   apply_immediately               = var.apply_immediately
+
+  lifecycle {
+    ignore_changes = [availability_zones]
+  }
+
   tags = merge(
     var.tags,
     {
